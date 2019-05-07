@@ -1,8 +1,6 @@
-// import { ApolloServer } from 'apollo-server-koa'
 import { GraphQLModule } from '@graphql-modules/core'
-
-import express from 'express'
-import { ApolloServer } from 'apollo-server-express'
+import Koa from 'koa'
+import { ApolloServer } from 'apollo-server-koa'
 import { createServer } from 'http'
 
 import * as graphqlModules from './schemas'
@@ -23,10 +21,10 @@ const server = new ApolloServer({
 })
 
 // const app: any = new Koa()
-const app = express()
+const app = new Koa()
 server.applyMiddleware({ app })
 
-const httpServer = createServer(app)
+const httpServer = createServer(app.callback())
 server.installSubscriptionHandlers(httpServer)
 
 httpServer.listen({ port: 4000 }, () => {

@@ -76,3 +76,5 @@ resolvers.ts
     }
   }
 ```
+
+- when use `appollo-server-koa` you need to use `http.createServer(app.callback())`
