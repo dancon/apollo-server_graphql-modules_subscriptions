@@ -12,8 +12,8 @@
     "start": "npm run build && node lib/index.js"
   },
   "dependencies": {
-    "@graphql-modules/core": "^0.7.0",
-    "@graphql-modules/di": "^0.7.0",
+    "@graphql-modules/core": "^0.7.1",
+    "@graphql-modules/di": "^0.7.1",
     "apollo-datasource-rest": "^0.3.2",
     "apollo-server-express": "^2.4.8",
     "apollo-server-koa": "^2.4.8",

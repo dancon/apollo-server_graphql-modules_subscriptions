@@ -1,8 +1,6 @@
 import { ModuleContext } from '@graphql-modules/core'
 import { PubSub } from 'apollo-server-express'
 
-// const pubsub = new PubSub()
-
 const indicators = [
   {
     host: 't1',
@@ -24,7 +22,10 @@ export default {
     updateIndicators(_, { psm, payload }, { injector }: ModuleContext) {
       const pubsub = injector.get(PubSub)
       console.log('update:', psm, payload)
-      pubsub.publish('indicatorUpdated', payload)
+      pubsub.publish('indicatorUpdated', {
+        indicatorUpdated: payload,
+        psm
+      })
       return payload
     }
   },
@@ -32,8 +33,15 @@ export default {
   Subscription: {
     indicatorUpdated: {
       resolve(payload) {
-        console.log('subscription:', payload)
-        return payload
+        console.log('subscription transformation:', payload)
+
+        // the reture type MUST be in correspondence with the definition in the schema.
+        return [
+          {
+            host: '改了',
+            risk: false
+          }
+        ]
       },
       subscribe: (_, __, { injector }: ModuleContext) => injector.get(PubSub).asyncIterator(['indicatorUpdated'])
     }

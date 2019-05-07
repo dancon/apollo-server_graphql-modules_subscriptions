@@ -16,7 +16,13 @@ declare const _default: {
     };
     Subscription: {
         indicatorUpdated: {
-            subscribe: () => AsyncIterator<{}>;
+            resolve(payload: any): {
+                host: string;
+                risk: boolean;
+            }[];
+            subscribe: (_: any, __: any, { injector }: ModuleContext<{
+                [key: string]: any;
+            }>) => AsyncIterator<{}>;
         };
     };
 };
