@@ -7,7 +7,6 @@
     "dev": "nodemon index.js",
     "copy:graphql": "cpy schemas/**/*.graphql ../lib --cwd=src --parents",
     "build": "cross-env NODE_ENV=production tsc -p . && npm run copy:graphql",
-    "build:live": "nodemon --watch src/index.ts --exec 'ts-node' src/index.ts",
     "debug": "cross-env NODE_ENV=development node --nolazy --inspect-brk=9229 ./node_modules/.bin/ts-node src/index.ts",
     "start": "npm run build && node lib/index.js"
   },
