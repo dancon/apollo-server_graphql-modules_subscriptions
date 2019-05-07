@@ -2,6 +2,8 @@
 
 The server side implementation of Graphql subscription with apollo-server and Graphql Modules.
 
+> If you are using `apollo-server-koa`, checkout the `koa` branch.
+
 ## HOW TO START
 
 - clone the repository
