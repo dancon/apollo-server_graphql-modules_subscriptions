@@ -50,8 +50,29 @@ open `http://localhost:4000/graphql` in your browser, you will see the graphql p
   }
 ````
 
-## NEED HELP
+## NEED TO KNOW
 
-The probleam is when I start subscripton and graphql playground into listening ...
+- Make sure the version of `@graphql-modules/core` and `@graphql-modules/di` is `0.7.1` or upper
 
-And then I excute a mutation `updateIndicators` in another tab, but subscription does not have any response ...
+- when use `Subscription transformation`, you must keep the reture type of `resolve` function in correspondence with the definition in the schema.
+
+resolvers.ts
+
+```typescript
+  Subscription: {
+    indicatorUpdated: {
+      resolve(payload) {
+        console.log('subscription transformation:', payload)
+
+        // the reture type MUST be in correspondence with the definition in the schema.
+        return [
+          {
+            host: '改了',
+            risk: false
+          }
+        ]
+      },
+      subscribe: (_, __, { injector }: ModuleContext) => injector.get(PubSub).asyncIterator(['indicatorUpdated'])
+    }
+  }
+```
