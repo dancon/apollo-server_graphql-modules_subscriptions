@@ -1,0 +1,8 @@
+type Query {
+  getUserInfo: UserInfo
+}
+
+type UserInfo {
+  id: String,
+  name: String
+}

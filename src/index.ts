@@ -6,6 +6,7 @@ import { ApolloServer } from 'apollo-server-express'
 import { createServer } from 'http'
 
 import * as graphqlModules from './schemas'
+import { authenticated } from './middleware/authentication'
 
 const gmodules: GraphQLModule[] = []
 Object.keys(graphqlModules).forEach((key) => {
@@ -13,7 +14,18 @@ Object.keys(graphqlModules).forEach((key) => {
 })
 
 const { schema, context, subscriptions } = new GraphQLModule({
-  imports: gmodules
+  imports: gmodules,
+  context () {
+    return {
+      user: {
+        id: 'u123',
+        name: 'Tom'
+      }
+    }
+  },
+  resolversComposition: {
+    'Query.getUserInfo': [ authenticated ]
+  }
 })
 
 const server = new ApolloServer({
@@ -29,7 +41,7 @@ server.applyMiddleware({ app })
 const httpServer = createServer(app)
 server.installSubscriptionHandlers(httpServer)
 
-httpServer.listen({ port: 4000 }, () => {
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-  console.log(`🚀 Subsciription ready at ws://localhost:4000${server.subscriptionsPath}`)
+httpServer.listen({ port: 5000 }, () => {
+  console.log(`🚀 Server ready at http://localhost:5000${server.graphqlPath}`)
+  console.log(`🚀 Subsciription ready at ws://localhost:5000${server.subscriptionsPath}`)
 })

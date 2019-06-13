@@ -11,7 +11,11 @@
       "program": "${workspaceFolder}/src/index.ts",
       "outFiles": [
         "${workspaceFolder}/lib/**/*.js"
-      ]
+      ],
+      "preLaunchTask": "tsc:build",
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
   ]
 }

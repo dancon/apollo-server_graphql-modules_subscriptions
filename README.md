@@ -54,7 +54,7 @@ open `http://localhost:4000/graphql` in your browser, you will see the graphql p
 
 ## NEED TO KNOW
 
-- Make sure the version of `@graphql-modules/core` and `@graphql-modules/di` is `0.7.1` or upper
+- Make sure the versions of `@graphql-modules/core` and `@graphql-modules/di` is `0.7.1` or higher
 
 - when use `Subscription transformation`, you must keep the reture type of `resolve` function in correspondence with the definition in the schema.
 
