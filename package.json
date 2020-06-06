@@ -13,7 +13,7 @@
   "dependencies": {
     "@graphql-modules/core": "^0.7.1",
     "@graphql-modules/di": "^0.7.1",
-    "apollo-server-express": "^2.4.8",
+    "apollo-server-express": "^2.14.2",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "graphql-import-node": "0.0.3",
